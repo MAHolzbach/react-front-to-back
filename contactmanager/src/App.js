@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import "./App.css";
-import NavBar from "./NavBar";
+import Contact from "./components/Contact";
 
 class App extends Component {
-  render() {}
+  render() {
+    return (
+      <div className="container">
+        <h1 className="title">The App Component</h1>
+        <Contact />
+      </div>
+    );
+  }
 }
 
 export default App;
