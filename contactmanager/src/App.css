@@ -1,0 +1,13 @@
+.card {
+  margin: 20px 0;
+}
+.fa-sort-down {
+  cursor: pointer;
+  margin-left: 5px;
+}
+.fa-times {
+  cursor: pointer;
+  color: red;
+  align-self: center;
+  padding-right: 20px;
+}

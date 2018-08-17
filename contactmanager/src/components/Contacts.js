@@ -25,6 +25,14 @@ class Contacts extends Component {
     ]
   };
 
+  deleteContact = id => {
+    const { contacts } = this.state;
+
+    let remainders = contacts.filter(contact => contact.id !== id);
+
+    this.setState({ contacts: remainders });
+  };
+
   render() {
     const { contacts } = this.state;
     return (
@@ -35,6 +43,7 @@ class Contacts extends Component {
             name={contact.name}
             email={contact.email}
             phone={contact.phone}
+            deleteClickHandler={this.deleteContact.bind(this, contact.id)}
           />
         ))}
       </div>
