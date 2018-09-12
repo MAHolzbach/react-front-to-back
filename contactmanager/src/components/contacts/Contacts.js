@@ -10,6 +10,9 @@ class Contacts extends Component {
           const { contacts } = value;
           return (
             <div>
+              <h1 className="is-size-3">
+                <span className="has-text-danger">Contact</span> List
+              </h1>
               {contacts.map(contact => (
                 <Contact
                   id={contact.id}
