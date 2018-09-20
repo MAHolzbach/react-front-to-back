@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import Contact from "./Contact";
-import { Consumer } from "../../context";
+import React, { Component } from 'react';
+import Contact from './Contact';
+import { Consumer } from '../../context';
 
 class Contacts extends Component {
   render() {
@@ -9,20 +9,14 @@ class Contacts extends Component {
         {value => {
           const { contacts } = value;
           return (
-            <div>
-              <h1 className="is-size-3">
-                <span className="has-text-danger">Contact</span> List
+            <React.Fragment>
+              <h1 className="display-4 mb-2">
+                <span className="text-danger">Contact</span> List
               </h1>
               {contacts.map(contact => (
-                <Contact
-                  id={contact.id}
-                  key={contact.id}
-                  name={contact.name}
-                  email={contact.email}
-                  phone={contact.phone}
-                />
+                <Contact key={contact.id} contact={contact} />
               ))}
-            </div>
+            </React.Fragment>
           );
         }}
       </Consumer>
