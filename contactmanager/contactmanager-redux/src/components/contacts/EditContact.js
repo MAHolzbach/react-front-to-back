@@ -1,32 +1,31 @@
-import React, { Component } from 'react';
-import TextInputGroup from '../layout/TextInputGroup';
+import React, { Component } from "react";
+import TextInputGroup from "../layout/TextInputGroup";
 
 class EditContact extends Component {
   state = {
-    name: '',
-    email: '',
-    phone: '',
+    name: "",
+    email: "",
+    phone: "",
     errors: {}
   };
 
-  onSubmit = (e) => {
+  onSubmit = e => {
     e.preventDefault();
 
     const { name, email, phone } = this.state;
 
-    // Check For Errors
-    if (name === '') {
-      this.setState({ errors: { name: 'Name is required' } });
+    if (name === "") {
+      this.setState({ errors: { name: "Name is required" } });
       return;
     }
 
-    if (email === '') {
-      this.setState({ errors: { email: 'Email is required' } });
+    if (email === "") {
+      this.setState({ errors: { email: "Email is required" } });
       return;
     }
 
-    if (phone === '') {
-      this.setState({ errors: { phone: 'Phone is required' } });
+    if (phone === "") {
+      this.setState({ errors: { phone: "Phone is required" } });
       return;
     }
 
@@ -40,15 +39,14 @@ class EditContact extends Component {
 
     //// UPDATE CONTACT ////
 
-    // Clear State
     this.setState({
-      name: '',
-      email: '',
-      phone: '',
+      name: "",
+      email: "",
+      phone: "",
       errors: {}
     });
 
-    this.props.history.push('/');
+    this.props.history.push("/");
   };
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
