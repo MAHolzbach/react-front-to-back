@@ -17,16 +17,28 @@ class EditContact extends Component {
     this.props.getContact(id);
   };
 
-  componentDidUpdate = (prevProps, prevState) => {
-    const { contact } = this.props;
-    if (prevState.name !== contact.name) {
-      this.setState({
-        name: contact.name,
-        email: contact.email,
-        phone: contact.phone
-      });
-    }
-  };
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log(nextProps);
+    console.log(prevState);
+    return nextProps.contact.name === prevState.name
+      ? {}
+      : {
+          name: nextProps.contact.name,
+          email: nextProps.contact.email,
+          phone: nextProps.contact.phone
+        };
+  }
+
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   const { contact } = this.props;
+  //   if (prevState.name !== contact.name) {
+  //     this.setState({
+  //       name: contact.name,
+  //       email: contact.email,
+  //       phone: contact.phone
+  //     });
+  //   }
+  // };
 
   onSubmit = e => {
     e.preventDefault();
