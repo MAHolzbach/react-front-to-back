@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TextInputGroup from "../layout/TextInputGroup";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getContact } from "../../actions/contactActions";
+import { getContact, updateContact } from "../../actions/contactActions";
 
 class EditContact extends Component {
   state = {
@@ -17,28 +17,14 @@ class EditContact extends Component {
     this.props.getContact(id);
   };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    console.log(nextProps);
-    console.log(prevState);
-    return nextProps.contact.name === prevState.name
-      ? {}
-      : {
-          name: nextProps.contact.name,
-          email: nextProps.contact.email,
-          phone: nextProps.contact.phone
-        };
+  componentWillReceiveProps(nextProps, nextState) {
+    const { name, email, phone } = nextProps.contact;
+    this.setState({
+      name,
+      email,
+      phone
+    });
   }
-
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   const { contact } = this.props;
-  //   if (prevState.name !== contact.name) {
-  //     this.setState({
-  //       name: contact.name,
-  //       email: contact.email,
-  //       phone: contact.phone
-  //     });
-  //   }
-  // };
 
   onSubmit = e => {
     e.preventDefault();
@@ -60,13 +46,16 @@ class EditContact extends Component {
       return;
     }
 
+    const { id } = this.props.match.params;
+
     const updContact = {
+      id,
       name,
       email,
       phone
     };
 
-    const { id } = this.props.match.params;
+    this.props.updateContact(updContact);
 
     this.setState({
       name: "",
@@ -136,5 +125,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getContact }
+  { getContact, updateContact }
 )(EditContact);
